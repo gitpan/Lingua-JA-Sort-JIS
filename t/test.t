@@ -1,21 +1,26 @@
 use strict;
-use JIS::Collation qw(jsort);
+use vars qw($loaded);
+BEGIN { $| = 1; print "1..14\n"; }
+END {print "not ok 1\n" unless $loaded;}
+use Lingua::JA::Sort::JIS qw(jsort jcmp);
+$loaded = 1;
+print "ok 1\n";
 
 chomp(my @data = <DATA>);
 unshift @data, "";
 my $data = join ":",@data;
 
-for my $i (1..20){
+my $num = 10 + 1;
+
+print "1..$num\n";
+
+for my $i (2..$num){
   my @arr  = shuffle(@data);
   my $arr  = join ":",@arr;
   my @sort = jsort(@arr);
   my $sort = join ":",@sort;
   print $sort eq $data ? "ok $i\n" : "not ok $i\n";
 }
-
-print "\nEND OK\n";
-print "sleep 3 sec..\n";
-sleep 3;
 
 sub shuffle {
   my @array = @_;

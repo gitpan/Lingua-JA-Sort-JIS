@@ -12,5 +12,5 @@ Copyright(c) 2001, SADAHIRO Tomoyuki. Japan. All rights reserved.
 This program is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself.
 
-t/collate.pl makes collate.txt, list of collation elements,
-but this .pl requires 5.006 and uses Unicode::CharName.
+element/element.pl.txt makes element.txt, list of collation elements,
+but this script requires 5.006 and uses Unicode::CharName.

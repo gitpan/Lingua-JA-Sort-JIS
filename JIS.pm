@@ -24,7 +24,7 @@ my @Get  = qw/getorder getkanji/;
   get  => \@Get,
 );
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 $PACKAGE = __PACKAGE__;
 
@@ -926,8 +926,6 @@ Other characters are collated as defined.
 Characters not defined as a collation element are
 ignored and skipped on collation.
 
-    Please see "collate.txt" from "collate.pl" for detail.
-
 B<BN:> Especially, almost alphabets with any diacritical mark
 are NOT defined in this implement, 
 excepting Latin vowels with macron or circumflex,
@@ -1073,7 +1071,7 @@ strings given to a collating method are converted by the coderef
 before making collating keys.
 
 For example, if you want to collate Shift_JIS-encoded strings,
-do like following.
+do as following.
 
    use Jcode;
    use Lingua::JA::Sort::JIS qw(jsort);
@@ -1396,6 +1394,11 @@ for information interchange]
 JIS X 0221 [Information technology - Universal Multiple-Octet Coded
 Character Set (UCS) - part 1 : Architectute and Basic Multilingual Plane].
 That is translated from ISO/IEC 10646-1 and introduced into JIS.
+
+=item *
+
+Japanese Standards Association (access to JIS)
+http://www.jsa.or.jp/
 
 =item *
 

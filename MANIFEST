@@ -3,6 +3,6 @@ JIS.pm
 Makefile.PL
 MANIFEST
 README
-test.pl
-t/test.pl
-t/collate.pl
+t/func.t
+t/test.t
+element/element.pl.txt
