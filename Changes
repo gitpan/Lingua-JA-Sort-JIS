@@ -1,0 +1,7 @@
+Revision history for Perl extension Lingua::JA::Sort::JIS.
+
+0.01  Mon May 28 20:45:36 2001
+	- original version; created by h2xs 1.19
+
+0.02  Sat Jun 02 21:00:15 2001
+	- OOP interface is permitted
