@@ -5,4 +5,4 @@ MANIFEST
 README
 t/func.t
 t/test.t
-element/element.pl.txt
+elements/elements.pl.txt

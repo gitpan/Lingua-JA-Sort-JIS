@@ -1,13 +1,9 @@
 package Lingua::JA::Sort::JIS;
 
 use strict;
-
-use Carp;
-
 use vars qw($VERSION $PACKAGE @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-
+use Carp;
 require Exporter;
-
 @ISA = qw(Exporter);
 
 my @Sort = qw/jsort fsort msort xsort bsort/;
@@ -24,9 +20,9 @@ my @Get  = qw/getorder getkanji/;
   get  => \@Get,
 );
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
-$PACKAGE = __PACKAGE__;
+$PACKAGE = 'Lingua::JA::Sort::JIS'; # __PACKAGE__
 
 my $Level = 4;
 my $Kanji = 2;
@@ -740,18 +736,18 @@ sub makeorder{
 
 sub karr {
   my($self,$coderef,$kanji);
-  if(ref $_[0] eq __PACKAGE__){
+  if(ref $_[0] eq $PACKAGE){
     $self = shift;
     $coderef = $self->{code};
     $kanji   = $self->{kanji};
   }
   if(ref $_[0] eq 'CODE'){ $coderef = shift }
-  $self  = $coderef ? $coderef->(shift) : shift;
+  $self  = $coderef ? &$coderef(shift) : shift;
   $kanji ||= shift || $Kanji;
   my(@ret, $key);
   my $prev = '';
-  unless($self =~ m/^(?:$Char)*$/o){
-    croak __PACKAGE__ . " Malformed UTF-8 character";
+  if($self !~ m/^(?:$Char)*$/o){
+    carp $PACKAGE . " Malformed UTF-8 character";
   }
   for($self =~ m/$Char/go){
     next unless $Order{$_} || $kanji > 1 && /^$CJK$/o;
@@ -772,7 +768,7 @@ sub karr {
 sub kcmp {
   my($i,$j,$n,$r);
   my($a,$b,$self,$level);
-  if(ref $_[0] eq __PACKAGE__){
+  if(ref $_[0] eq $PACKAGE){
     $self = shift;
     $level = $self->{level};
   }
@@ -792,15 +788,15 @@ sub kcmp {
 
 sub jcmp {
   my($self,$coderef,$level,$kanji);
-  if(ref $_[0] eq __PACKAGE__){
+  if(ref $_[0] eq $PACKAGE){
     $self = shift;
     $coderef = $self->{code};
     $level   = $self->{level};
     $kanji   = $self->{kanji};
   }
   if(ref $_[0] eq 'CODE'){ $coderef = shift }
-  my $a = defined $coderef ? $coderef->($_[0]) : $_[0];
-  my $b = defined $coderef ? $coderef->($_[1]) : $_[1];
+  my $a = defined $coderef ? &$coderef($_[0]) : $_[0];
+  my $b = defined $coderef ? &$coderef($_[1]) : $_[1];
   $level ||= $_[2] || $Level;
   $kanji ||= $_[3] || $Kanji;
   kcmp(karr($a, $kanji), karr($b, $kanji), $level);
@@ -808,7 +804,7 @@ sub jcmp {
 
 sub jsort {
   my($self,$coderef,$level,$kanji);
-  if(ref $_[0] eq __PACKAGE__){
+  if(ref $_[0] eq $PACKAGE){
     $self = shift;
     $coderef = $self->{code};
     $level   = $self->{level};
@@ -817,7 +813,7 @@ sub jsort {
   if(ref $_[0] eq 'CODE'){ $coderef = shift }
   map { $_->[0] }
   sort{ kcmp($a->[1], $b->[1], $level) }
-  map { [$_, karr( defined $coderef ? $coderef->($_) : $_, $kanji ) ] }
+  map { [$_, karr( defined $coderef ? &$coderef($_) : $_, $kanji ) ] }
   @_;
 }
 
@@ -828,7 +824,7 @@ my $Xsort = $PACKAGE->new(4,3);
 
 sub fsort {
     my($self,$coderef);
-    if(ref $_[0] eq __PACKAGE__){
+    if(ref $_[0] eq $PACKAGE){
        $self = shift;
        $coderef = $self->{code};
     }
@@ -838,7 +834,7 @@ sub fsort {
 
 sub msort {
     my($self,$coderef);
-    if(ref $_[0] eq __PACKAGE__){
+    if(ref $_[0] eq $PACKAGE){
        $self = shift;
        $coderef = $self->{code};
     }
@@ -848,7 +844,7 @@ sub msort {
 
 sub bsort {
     my($self,$coderef);
-    if(ref $_[0] eq __PACKAGE__){
+    if(ref $_[0] eq $PACKAGE){
        $self = shift;
        $coderef = $self->{code};
     }
@@ -858,7 +854,7 @@ sub bsort {
 
 sub xsort {
     my($self,$coderef);
-    if(ref $_[0] eq __PACKAGE__){
+    if(ref $_[0] eq $PACKAGE){
        $self = shift;
        $coderef = $self->{code};
     }
@@ -1279,7 +1275,7 @@ the replacing kana, while ternary not equal to.
 
 =item KATAKANA-HIRAGANA PROLONGED SOUND MARK
 
-The PROLONGED MARK is repleced to normal vowel or nasal
+The PROLONGED MARK is repleced by normal vowel or nasal
 katakana corresponding to the preceding kana if exists.
 
   eg.	[Ka][-6] to [Ka][A6]
@@ -1289,8 +1285,8 @@ katakana corresponding to the preceding kana if exists.
 
 =item HIRAGANA- and KATAKANA ITERATION MARKs
 
-The ITERATION MARKs (VOICELESS) are repleced 
-to normal kana corresponding to the preceding kana if exists.
+The ITERATION MARKs (VOICELESS) are repleced
+by normal kana corresponding to the preceding kana if exists.
 
   eg.	[Ka][*6] to [Ka][Ka]
 	[Do][*5] to [Do][to]
@@ -1300,7 +1296,7 @@ to normal kana corresponding to the preceding kana if exists.
 
 =item HIRAGANA- and KATAKANA VOICED ITERATION MARKs
 
-The VOICED ITERATION MARKs are repleced to the voiced kana
+The VOICED ITERATION MARKs are repleced by the voiced kana
 corresponding to the preceding kana if exists.
 
   eg.	[ha][+5] to [ha][ba]

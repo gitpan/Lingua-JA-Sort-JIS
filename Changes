@@ -1,10 +1,14 @@
 Revision history for Perl extension Lingua::JA::Sort::JIS.
 
+0.04  Sat Jun 09 08:26:47 2001
+    - now works on perl 5.003.
+    - malformed UTF-8 character is now carped (previously croaked).
+
 0.03  Mon Jun 04 20:52:01 2001
-    - Fixed bug in t/test.t (Thank you, Andreas Marcel Riechert)
+    - fixed bug in t/test.t (Thank you, Andreas Marcel Riechert).
 
 0.02  Sat Jun 02 21:00:15 2001
-    - Add OOP interface
+    - add OOP interface.
 
 0.01  Mon May 28 20:45:36 2001
     - original version; created by h2xs 1.19

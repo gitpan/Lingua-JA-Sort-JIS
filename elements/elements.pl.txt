@@ -8,7 +8,7 @@ use Lingua::JA::Sort::JIS qw(kcmp);
 
 use Unicode::CharName qw(uname);
 
-my $output = "element.txt";
+my $output = "elements.txt";
 
 print "output collation elements to $output...\n";
 
@@ -49,13 +49,13 @@ for(sort { kcmp([ $order{$a} ], [ $order{$b} ], 5) } keys %order){
     }
     elsif($m =~ s/SEMI-VOICED SOUND MARK//){
       ($m = (split(' ',$n))[-1]) =~ tr/H/P/;
-      $name = "halfwidth form of KATAKANA LETTER $m";
+      $name = "halfwidth form for KATAKANA LETTER $m";
       $ucs  = "$x:$y";
     }
     elsif($m =~ s/VOICED SOUND MARK//){
       ($m = (split(' ',$n))[-1]) =~ tr/KSTH/GZDB/;
       $m = 'VU' if $m eq 'U';
-      $name = "halfwidth form of KATAKANA LETTER $m";
+      $name = "halfwidth form for KATAKANA LETTER $m";
       $ucs  = "$x:$y";
     }
     else {

@@ -1,8 +1,13 @@
 use strict;
-use vars qw($loaded);
-BEGIN { $| = 1; print "1..14\n"; }
+use vars qw($i $loaded $num);
+BEGIN {
+  use Lingua::JA::Sort::JIS qw(jsort jcmp);
+  $| = 1;
+  $num = 10 + 1;
+  print "1..$num\n";
+}
 END {print "not ok 1\n" unless $loaded;}
-use Lingua::JA::Sort::JIS qw(jsort jcmp);
+
 $loaded = 1;
 print "ok 1\n";
 
@@ -10,11 +15,7 @@ chomp(my @data = <DATA>);
 unshift @data, "";
 my $data = join ":",@data;
 
-my $num = 10 + 1;
-
-print "1..$num\n";
-
-for my $i (2..$num){
+for $i (2..$num){
   my @arr  = shuffle(@data);
   my $arr  = join ":",@arr;
   my @sort = jsort(@arr);
