@@ -1,8 +1,10 @@
 Changes
-JIS.pm
 Makefile.PL
 MANIFEST
+META.yml
 README
+JIS.pm
+JIS.pod
 t/func.t
 t/test.t
-elements/elements.pl.txt
+t/nonkanji.t

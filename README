@@ -1,10 +1,9 @@
-Lingua::JA::Sort::JIS version 0.04
+Lingua::JA::Sort::JIS version 0.05
 ================
 
 SYNOPSIS
 
-A perl module compares and sorts a list of UTF-8 strings
-using JIS X 4061, "the collation of Japanese character strings".
+Lingua::JA::Sort::JIS - compares and sorts strings encoded in UTF-8
 
 OOP:
     use Lingua::JA::Sort::JIS;
@@ -15,7 +14,7 @@ OOP:
     # $class : the kanji class, 1 to 3.
 
 not-OOP:
-    Lingua::JA::Sort::JIS qw(jsort)
+    use Lingua::JA::Sort::JIS qw(jsort)
     @sorted = jsort(@strings);
 
   * In the not-OOP syntax, you are not allowed to change
@@ -35,17 +34,11 @@ DEPENDENCIES
 
 perl
 
-COPYRIGHT AND LICENCE
+COPYRIGHT AND LICENSE
 
-This program is free software; you can redistribute it and/or 
-modify it under the same terms as Perl itself.
+SADAHIRO Tomoyuki <SADAHIRO@cpan.org>
 
-Copyright (C) 2001, SADAHIRO Tomoyuki. Japan. All rights reserved.
+Copyright(C) 2001, 2007. SADAHIRO Tomoyuki. Japan. All rights reserved.
 
-NOTE
-
-elements/elements.pl.txt makes elements.txt,
-a list of the collation elements,
-but this script requires 5.006 and uses Unicode::CharName.
-
-Or get it from http://homepage1.nifty.com/nomenclator/perl/elements.zip
+This module is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
