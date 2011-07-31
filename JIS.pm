@@ -20,7 +20,7 @@ my @Get  = qw/getorder getkanji/;
   get  => \@Get,
 );
 
-$VERSION = '0.05';
+$VERSION = '0.10';
 
 $PACKAGE = 'Lingua::JA::Sort::JIS'; # __PACKAGE__
 

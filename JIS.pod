@@ -452,6 +452,10 @@ C<PROLONGED SOUND MARK replaced by KATAKANA A>, and C<KATAKANA RU>.
        the basic kanji class (Levels 1 and 2 kanji, JIS).
        the extended kanji class (CJK Unified Ideographs).
 
+=head1 CAVEAT
+
+B<THIS MODULE IS OLD THEN IS NOT AWARE OF PERL'S UNICODE ENCODING.>
+
 =head1 AUTHOR
 
 SADAHIRO Tomoyuki <SADAHIRO@cpan.org>

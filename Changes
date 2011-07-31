@@ -1,5 +1,8 @@
 Revision history for Perl extension Lingua::JA::Sort::JIS.
 
+0.10  Sun Jul 31 22:03:39 2011
+    - fix the tarball with world writable files.
+
 0.05  Sun Jan 14 16:53:39 2007
     - Bug fix: the order between U+4EDD and U+3005 was reverse.
       Correctly U+4EDD < U+3005 (same as that in the JIS kuten order).
